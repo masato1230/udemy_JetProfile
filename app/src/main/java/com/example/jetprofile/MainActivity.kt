@@ -95,6 +95,16 @@ class MainActivity : ComponentActivity() {
                                 thickness = 2.dp,
                             )
                         }
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        // 詳細表示ボタン
+                        Button(
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFF85F6A)),
+                            onClick = { /*TODO*/ },
+                        ) {
+                            Text(text = "詳細を表示", color = Color.White)
+                        }
                     }
                 }
             }
