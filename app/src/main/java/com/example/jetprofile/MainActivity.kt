@@ -4,16 +4,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -78,14 +82,7 @@ class MainActivity : ComponentActivity() {
                             Spacer(modifier = Modifier.height(20.dp))
 
                             // Email
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Icon(
-                                    imageVector = Icons.Default.Email,
-                                    contentDescription = "email",
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                Text(text = "Email", fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                            }
+                            Label(icon = Icons.Default.Email, text = "Email")
                             Spacer(modifier = Modifier.height(10.dp))
                             Text(text = "example@ezweb.ne.jp", fontSize = 16.sp)
                             Spacer(modifier = Modifier.height(5.dp))
@@ -105,9 +102,43 @@ class MainActivity : ComponentActivity() {
                         ) {
                             Text(text = "詳細を表示", color = Color.White)
                         }
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        // 趣味 & 居住地セクション
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(Color.LightGray.copy(alpha = 0.3f))
+                                .padding(horizontal = 10.dp, vertical = 20.dp)
+                        ) {
+                            Label(
+                                icon = Icons.Default.Favorite,
+                                text = "趣味: キックボクシング, 個人開発",
+                                color = Color.Gray,
+                            )
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Label(
+                                icon = Icons.Default.LocationOn,
+                                text = "居住地: 東京都大田区",
+                                color = Color.Gray,
+                            )
+                        }
                     }
                 }
             }
         }
+    }
+}
+
+@Composable
+fun Label(icon: ImageVector, text: String, color: Color = MaterialTheme.colors.onBackground) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+        )
+        Spacer(modifier = Modifier.width(10.dp))
+        Text(text = text, color = color, fontSize = 14.sp, fontWeight = FontWeight.Bold)
     }
 }
